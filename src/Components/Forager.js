@@ -9,7 +9,9 @@ const plantAPI = 'https://api.plant.id/v2/identify'
 export default class Forager extends React.Component {
     state = {
         isLoggedIn: false,
-        picture: ""
+        picture: "", 
+        plantGuesses: [],
+        showCamera: false,
     }
 
     handleLogin = (event) => {
@@ -24,14 +26,13 @@ export default class Forager extends React.Component {
         this.setState({
             picture: image
         })
-        this.plantFetch()
+        this.plantFetch(image)
     }
 
-    plantFetch = () => {
-        let image = this.state.picture
+    plantFetch = (image) => {
         let data = {
             api_key: process.env.REACT_APP_PLANT_API_KEY,
-            images: image,
+            images: [image],
             modifiers: ["crops_fast", "similar_images"],
             plant_language: "en",
             plant_details: [
@@ -49,10 +50,28 @@ export default class Forager extends React.Component {
             },
             body: JSON.stringify(data)
         })
-        // .then(response => response.json())
-        // .then(data => console.log('success!', data))
+        .then(response => response.json())
+        .then(data => this.handlePlantGuesses(data))
         .catch((error) => {
             console.error('Error: ', error)
+        })
+    }
+
+    handlePlantGuesses = (plantData) => {
+        this.setState({
+            plantGuesses: plantData.suggestions
+        })
+    }
+
+    showPlantGuesses = () => {
+        return this.state.plantGuesses.map(plantGuess => {
+            return <Plant key={plantGuess.id} plant={plantGuess} />
+        })
+    }
+
+    handleShowCamera = () => {
+        this.setState({
+            showCamera: !this.state.showCamera
         })
     }
 
@@ -64,8 +83,11 @@ export default class Forager extends React.Component {
                 : 
                 <>
                     <button onClick={this.handleLogin}>Log Out</button>
-                    <Camera handleCapture={this.handleCapture}/>
-                    <Plant />
+                    <button onClick={this.handleShowCamera}>Camera On/Off</button>
+                    {this.state.showCamera ? <Camera handleCapture={this.handleCapture}/> : null}
+                    <div className='plant-card-container'>
+                        {(this.state.plantGuesses.length > 0) ? this.showPlantGuesses() : null}
+                    </div>
                     <Recipe />
                 </>
                 }
