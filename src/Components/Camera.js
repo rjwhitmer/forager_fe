@@ -21,8 +21,8 @@ export default function Camera(props){
     
 
         return (
-            <>
-                <h1>Wow! A camera!</h1>
+            <div className='camera'>
+                <h1 className='site-banner'>Wow! A camera!</h1>
                 <Webcam
                     audio={false}
                     height={300}
@@ -32,7 +32,7 @@ export default function Camera(props){
                     videoConstraints={videoConstraints}
                 />
                 <button onClick={capture}>Capture</button>
-            </>
+            </div>
         )
     }
 

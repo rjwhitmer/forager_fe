@@ -1,5 +1,31 @@
+body {
+  background-image: url(./site-images/dave-robinson-B2KgTWnNBd4-unsplash.jpg);
+  background-size: 100%;
+}
+
+.banner {
+  background-color: hsla(154, 48%, 61%, 0.88);
+  width: 25%;
+  margin: 20px;
+  border-radius: 6px;
+}
+
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login {
+  width: 190px;
+  border-radius: 6px;
+  background-color: hsla(154, 48%, 61%, 0.88);
+}
+
+.login > * {
+  margin: 5px;
+  padding: 5px;
 }
 
 .plant-card-container {
@@ -10,9 +36,30 @@
 }
 
 .plant-card {
-  border: 1px solid black;
+  background-color: hsla(154, 48%, 61%, 0.88);
+  border-radius: 6px;
   width: 10rem;
   height: 100%;
+  margin: 10px;
+}
+
+.site-banner {
+  background-color: hsla(154, 48%, 61%, 0.88);
+  border-radius: 6px;
+}
+
+.site-banner > * {
+  padding: 5px;
+}
+
+.camera {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.camera > h1 {
+  padding: 5px;
 }
 
 .small {
