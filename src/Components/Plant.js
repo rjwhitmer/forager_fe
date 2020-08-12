@@ -22,6 +22,13 @@ export default class Plant extends React.Component{
                     />
         })
     }
+
+    handleClick = (event) => {
+        event.stopPropagation()
+        event.preventDefault()
+        this.props.addUserPlants(this.props.plant)
+    }
+
     render(){
         return (
             <div className='plant-card'>
@@ -33,6 +40,7 @@ export default class Plant extends React.Component{
                 ? <h4>No Images Available!</h4>
                 : <>{this.handlePictures(this.props.plant.similar_images)}</>
                 }
+                <button onClick={this.handleClick}>Got it!</button>
             </div>
         )}
 }

@@ -43,6 +43,31 @@ body {
   margin: 10px;
 }
 
+.user-plant-card {
+  background-color: hsla(154, 48%, 61%, 0.88);
+  border-radius: 6px;
+  width: 10rem;
+  height: 100%;
+  text-overflow: clip;
+  margin: 5px;
+}
+
+.user-plant-card > img {
+  width: 80%;
+}
+
+.user-plant-card > p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.user-plant-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .site-banner {
   background-color: hsla(154, 48%, 61%, 0.88);
   border-radius: 6px;
