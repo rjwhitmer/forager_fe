@@ -26,7 +26,7 @@ export default class Plant extends React.Component{
     handleClick = (event) => {
         event.stopPropagation()
         event.preventDefault()
-        this.props.addUserPlants(this.props.plant)
+        this.props.handleAddUserPlant(this.props.plant)
     }
 
     render(){

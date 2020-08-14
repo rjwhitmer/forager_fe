@@ -1,25 +1,39 @@
 import React from 'react'
 
-export default function UserPlants(props){
+export default class UserPlants extends React.Component {
+    state = {
+        isClicked: false
+    }
 
-    const showUserPlants = () => {
-        return props.plants.map(plant => {
-            return(
-                <div className='user-plant-card'>
-                    <h4>{plant.name}</h4>
-                    <img src={plant.first_similar_image} />
-                    <p>{plant.description}</p>
-                    <a href={plant.wiki_url}>More Info!</a>
-                </div>
-            )
+    handleRecipeClick = (event) => {
+        event.stopPropagation()
+        this.props.recipeClick(this.props.plant.name)
+        this.setState({
+            isClicked: !this.state.isClicked
         })
     }
-    return (
-        <>
-            <h1 className='site-banner'>Here are your plants!</h1>
-            <div className='user-plant-container'>
-                {showUserPlants()}
-            </div>
-        </>
-    )
+
+    showUserPlants = () => {
+        if (this.props.plant)
+            return(
+                <div
+                className={this.state.isClicked ? 'clicked-user-plant-card' : 'user-plant-card'}
+                onClick={this.handleRecipeClick}>
+                    <h4>{this.props.plant.name}</h4>
+                    <img src={this.props.plant.first_similar_image} />
+                    <p>{this.props.plant.description}</p>
+                    <a href={this.props.plant.wiki_url}>More Info!</a>
+                </div>
+            )
+        else return null
+    }
+    render(){
+        return (
+            <>
+                <div className='user-plant-container'>
+                    {this.showUserPlants()}
+                </div>
+            </>
+        )
+    }
 }
