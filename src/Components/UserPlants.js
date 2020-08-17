@@ -20,8 +20,7 @@ export default class UserPlants extends React.Component {
                 className={this.state.isClicked ? 'clicked-user-plant-card' : 'user-plant-card'}
                 onClick={this.handleRecipeClick}>
                     <h4>{this.props.plant.name}</h4>
-                    <img src={this.props.plant.first_similar_image} />
-                    <p>{this.props.plant.description}</p>
+                    <img alt="" src={this.props.plant.first_similar_image} />
                     <a href={this.props.plant.wiki_url}>More Info!</a>
                 </div>
             )

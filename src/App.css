@@ -4,6 +4,23 @@ body {
   background-color: hsl(77, 100%, 91%);
 }
 
+button {
+  width: 80px;
+  padding: 5px;
+  margin: 5px;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.app-container {
+  width: 100%;
+}
+
 #root {
   background-image: url(./site-images/dave-robinson-B2KgTWnNBd4-unsplash.jpg);
   background-size: 100%;
@@ -16,25 +33,34 @@ body {
 }
 
 .banner {
-  margin: 20px;
+  height: 80%;
+  font-family: 'Amatic SC', cursive;
+  font-size: 36px;
+  margin-top: 5%;
+}
+
+.banner > h1, h3 {
+  margin: 0
 }
 
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding-bottom: 20px;
-  margin-top: 10%;
+  margin-top: 5%;
   border-radius: 6px;
+  font-family: 'Mukta', sans-serif;
 }
 
 .login {
-  margin-top: 25%;
   width: 190px;
   border-radius: 6px;
   background-color: hsla(154, 48%, 61%, 0.88);
   box-shadow: 5px 6px 7px 1px #000000;
+  padding: 20px;
 }
 
 .login > * {
@@ -45,8 +71,10 @@ body {
 .plant-card-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  box-shadow: 5px 6px 7px 1px #000000;
+  width: 90%;
+  margin-left: 50px;
 }
 
 .plant-card {
@@ -88,50 +116,83 @@ body {
   box-shadow: 5px 6px 7px 1px #000000
 }
 
-.user-plant-card > p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
-}
-
-.clicked-user-plant-card > p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
-}
-
 .user-plant-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .user-recipe-user-plant-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .user-plants {
-  margin-right: 50px;
-  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-plants > button {
+  margin-top: 20px;
 }
 
 .user-plants-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  max-width: 80%;
 }
 
 .user-recipes {
-  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-recipes > .site-banner {
+  width: 50%;
+}
+
+.user-recipes > button {
+
+}
+
+.user-recipes-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 80%;
+}
+
+.user-recipe-card {
+  background-color: hsla(154, 48%, 61%, 0.88);
+  border-radius: 6px;
+  width: 10rem;
+  height: 100%;
+  text-overflow: clip;
+  margin: 10px;
+  box-shadow: 5px 6px 7px 1px #000000;
+}
+
+.user-recipe-card > img {
+  width: 100%;
+}
+
+.user-recipe-card > h1 {
+  font-size: 18px;
 }
 
 .site-banner {
   background-color: hsla(154, 48%, 61%, 0.88);
   border-radius: 6px;
   box-shadow: 5px 6px 7px 1px #000000;
+  width: 90%;
 }
 
 .camera {
@@ -144,6 +205,11 @@ body {
   padding: 15px;
   width: 225px;
   margin-top: 10px;
+}
+
+.camera-container {
+  display: flex;
+  justify-content: center;
 }
 
 .camera > h1 {

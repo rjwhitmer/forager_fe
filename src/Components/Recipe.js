@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function Recipe(){
+export default function Recipe(props){
     return (
-        <div className='site-banner'>
-            <h1>Look at these recipes!</h1>
+        <div className='user-recipe-card'>
+            <h1>{props.recipe.title}</h1>
+            <img src={props.recipe.image} />
+            <a href={props.recipe.sourceUrl}>Check it out!</a>
         </div>
     )
 }

@@ -7,12 +7,13 @@ import Camera from './Camera'
 import UserPlants from './UserPlants'
 
 const recipeAPIKey = process.env.REACT_APP_RECIPE_API_KEY
+const recipeAPIId = process.env.REACT_APP_RECIPE_API_ID
 
 const plantAPI = 'https://api.plant.id/v2/identify'
 const userURL = 'http://localhost:8000/users/1'
-const recipeAPI = `https://api.edamam.com/search/app_key=${recipeAPIKey}/`
 
 export default class Forager extends React.Component {
+    
     state = {
         isLoggedIn: false,
         picture: "", 
@@ -77,6 +78,7 @@ export default class Forager extends React.Component {
 
     addUserPlants = (plantObject) => {
         this.setState({
+            showCamera: !this.state.showCamera,
             plantGuesses: [],
             userPlants: [...this.state.userPlants, plantObject]
         })
@@ -84,7 +86,7 @@ export default class Forager extends React.Component {
 
     recipeClick = (plant) => {
         let isSelected = this.state.selectedPlants.includes(plant)
-        {(!isSelected) ? this.addSelectedPlant(plant) : this.removeSelectedPlant(plant)}
+        !isSelected ? this.addSelectedPlant(plant) : this.removeSelectedPlant(plant)
     }
 
     addSelectedPlant = (plant) => {
@@ -95,10 +97,33 @@ export default class Forager extends React.Component {
 
     removeSelectedPlant = (plant) => {
         let filteredPlants = this.state.selectedPlants.filter(filteredPlant => {
-            return filteredPlant != plant
+            return filteredPlant !== plant
         })
         this.setState({
             selectedPlants: filteredPlants
+        })
+    }
+
+    recipeFetch = () => {
+        const recipeAPIURL = `https://api.spoonacular.com/recipes/complexSearch?query=${this.state.selectedPlants}&addRecipeInformation=true&apiKey=${recipeAPIKey}`
+        fetch(recipeAPIURL)
+        .then(response => response.json())
+        .then(data => this.setState({
+            userRecipes: data
+        }))
+        .catch(e => console.log(e))
+    }
+
+    handleShowRecipes = () => {
+        return this.state.userRecipes.results.map(recipeObject => {
+            return <Recipe recipe={recipeObject} />
+        })
+    }
+
+    clearRecipes = (event) => {
+        event.preventDefault()
+        this.setState({
+            userRecipes: []
         })
     }
 
@@ -172,31 +197,37 @@ export default class Forager extends React.Component {
                 ? <Login handleLogin={this.handleLogin}/>
                 : 
                 <>
-                    <button onClick={this.handleLogin}>Log Out</button>
-                    <button onClick={this.handleShowCamera}>Camera On/Off</button>
+                    <nav>
+                        <button className='logout' onClick={this.handleLogin}>Log Out</button>
+                        <button onClick={this.handleShowCamera}>Camera On/Off</button>
+                    </nav>
                     {this.state.showCamera 
                     ? <Camera handleCapture={this.handleCapture}/> 
-                    : 
+                    : null }
                     <div className='user-recipe-user-plant-container'>
                         {(this.state.userPlants.length > 0)
                         ? 
                             <div className='user-plants'>
                                 <h1 className='site-banner'>Here are your plants!</h1>
-                                    <div className='user-plants-container'>
-                                        {this.showUserPlants()}
-                                    </div>
-                                <button onClick={this.props.getUserRecipes}>Find Recipes!</button>
+                                <div className='user-plants-container'>
+                                    {this.showUserPlants()}
+                                </div>
+                                <button onClick={this.recipeFetch}>Find Recipes!</button>
                             </div>
                         : null
                         }
 
-                        {(this.state.userRecipes.name)
+                        {(this.state.userRecipes.results)
                         ?   <div className='user-recipes'>
-                                <Recipe />
+                                <h1 className='site-banner'>Look at these recipes!</h1>
+                                <div className='user-recipes-container'>
+                                    {this.handleShowRecipes()}
+                                </div>
+                                <button onClick={this.clearRecipes}>Clear Recipes</button>
                             </div>
                         : null
                         }
-                    </div>}
+                    </div>
                     <div className='plant-card-container'>
                         {(this.state.plantGuesses.length > 0) ? this.showPlantGuesses() : null}
                     </div>

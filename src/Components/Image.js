@@ -32,11 +32,11 @@ export default class Image extends React.Component{
                             className='full-image'
                             src={this.props.picture.url}
                             onClick={this.handleFocusPicture}
-                            alt='no image'
+                            alt=''
                         />
                     </dialog>
                 )}
-                <p>Similarity: {this.props.handlePercent(this.props.picture.similarity)}%</p>
+                <p>Image Similarity: {this.props.handlePercent(this.props.picture.similarity)}%</p>
             </>
         )
     }

@@ -4,7 +4,8 @@ import Image from './Image'
 export default class Plant extends React.Component{
 
     state = {
-        pictureIsFocused: false
+        pictureIsFocused: false,
+        images: []
     }
 
     handlePercent = (number) => {
@@ -12,15 +13,23 @@ export default class Plant extends React.Component{
     }
 
     handlePictures = (pictures) => {
-        return pictures.map(picture => {
-            return <Image 
-                        handleFocusPicture={this.handleFocusPicture}
-                        handlePercent={this.handlePercent}
-                        pictureIsFocused={this.state.pictureIsFocused}
-                        picture={picture}
-                        plant={this.props.plant}
-                    />
-        })
+        // return pictures.map(picture => {
+        //     return <Image 
+        //                 handleFocusPicture={this.handleFocusPicture}
+        //                 handlePercent={this.handlePercent}
+        //                 pictureIsFocused={this.state.pictureIsFocused}
+        //                 picture={picture}
+        //                 plant={this.props.plant}
+        //             />
+        // })
+
+        return <Image 
+                    handleFocusPicture={this.handleFocusPicture}
+                    handlePercent={this.handlePercent}
+                    pictureIsFocused={this.state.pictureIsFocused}
+                    picture={pictures[0]}
+                    plant={this.props.plant}
+                />
     }
 
     handleClick = (event) => {
@@ -39,6 +48,7 @@ export default class Plant extends React.Component{
                 {(!this.props.plant.similar_images.length > 0)
                 ? <h4>No Images Available!</h4>
                 : <>{this.handlePictures(this.props.plant.similar_images)}</>
+                // : <img className='small' src={this.props.plant.similar_images[0].url} />
                 }
                 <button onClick={this.handleClick}>Got it!</button>
             </div>

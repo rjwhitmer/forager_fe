@@ -36,7 +36,7 @@ export default function Camera(props){
     }
 
     return (
-        <div>
+        <div className='camera-container'>
             {WebcamCapture()}
         </div>
     )
