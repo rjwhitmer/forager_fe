@@ -7,14 +7,16 @@ import Camera from './Camera'
 import UserPlants from './UserPlants'
 
 const recipeAPIKey = process.env.REACT_APP_RECIPE_API_KEY
-const recipeAPIId = process.env.REACT_APP_RECIPE_API_ID
 
 const plantAPI = 'https://api.plant.id/v2/identify'
-const userURL = 'http://localhost:8000/users/1'
+const userURL = 'http://localhost:8000/forager/users/'
+// const authURL = 'http://localhost:8000/token-auth/'
 
 export default class Forager extends React.Component {
     
     state = {
+        username: '',
+        // isLoggedIn: localStorage.getItem('token') ? true : false,
         isLoggedIn: false,
         picture: "", 
         plantGuesses: [],
@@ -28,11 +30,55 @@ export default class Forager extends React.Component {
         this.getUserPlants()
     }
 
-    handleLogin = (event) => {
+    handleLogin = (event, userData) => {
         event.stopPropagation()
         event.preventDefault()
+        // fetch(authURL, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": 'application/json'
+        //     },
+        //     body: JSON.stringify(userData)
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     localStorage.setItem('token', data.token);
+        //     this.setState({
+        //         isLoggedIn: true,
+        //         username: data.user.name
+        //     })
+        // })
+
         this.setState({
-            isLoggedIn: !this.state.isLoggedIn
+            isLoggedIn: !this.state.isLoggedIn,
+        })
+    }
+
+    handleSignup = (event, userData) => {
+        event.stopPropagation()
+        event.preventDefault()
+        fetch(userURL, {
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem('token', data.token);
+            this.setState({
+                isLoggedIn: true,
+                username: data.user.username
+            })
+        })
+    }
+
+    handleLogout = () => {
+        localStorage.removeItem('token')
+        this.setState({
+            isLoggedIn: false,
+            username: ''
         })
     }
 
@@ -194,11 +240,11 @@ export default class Forager extends React.Component {
         return (
             <div>
                 {(!this.state.isLoggedIn)
-                ? <Login handleLogin={this.handleLogin}/>
+                ? <Login handleLogin={this.handleLogin} handleSignup={this.handleSignup}/>
                 : 
                 <>
                     <nav>
-                        <button className='logout' onClick={this.handleLogin}>Log Out</button>
+                        <button className='logout' onClick={this.handleLogout}>Log Out</button>
                         <button onClick={this.handleShowCamera}>Camera On/Off</button>
                     </nav>
                     {this.state.showCamera 

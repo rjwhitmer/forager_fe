@@ -5,7 +5,7 @@ export default function Camera(props){
     const videoConstraints = {
         width: 500,
         height: 500,
-        facingMode: ["user", "environment"]
+        facingMode: 'user'
     }
 
     const WebcamCapture = () => {
@@ -36,7 +36,7 @@ export default function Camera(props){
     }
 
     return (
-        <div className='camera-container'>
+        <div>
             {WebcamCapture()}
         </div>
     )

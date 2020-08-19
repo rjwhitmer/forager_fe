@@ -1,68 +1,123 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Forager
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [](#)
+  - [Table of contents](#table-of-contents)
+  - [General info](#general-info)
+  - [Intro Video](#intro-video)
+  - [Technologies](#technologies)
+  - [Setup](#setup)
+  - [Code Examples](#code-examples)
+  - [Features](#features)
+  - [Status](#status)
+  - [Inspiration](#inspiration)
+  - [Contact](#contact)
 
-### `yarn start`
+## General Info
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Forager is a website that allows a user to identify a plant, and then checks to see if there are any recipes that include that plant!
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Intro Video
 
-### `yarn test`
+<!-- [Mod 3 Flatiron Project by Bob Whitmer](https://youtu.be/PoxeLCi_3M8) -->
+Video coming soon!
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies
 
-### `yarn build`
+* Python - 3.7.7
+* Django - 3.1
+* Django REST Framework - 3.11.1
+* SQLite3 - version 1.4
+* JWT
+* JavaScript
+* React 16.8
+* CSS
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+To view this project, visit https://rjwhitmer-capstone.web.app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Code Examples
 
-### `yarn eject`
+Find the plant you took a picture of:
+```JavaScript
+ plantFetch = (image) => {
+        let data = {
+            api_key: process.env.REACT_APP_PLANT_API_KEY,
+            images: [image],
+            modifiers: ["crops_fast", "similar_images"],
+            plant_language: "en",
+            plant_details: [
+                "common_names",
+                "url",
+                "name_authority",
+                "wiki_description",
+                "synonyms"
+            ]
+        }
+        fetch(plantAPI, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => this.handlePlantGuesses(data))
+        .catch((error) => {
+            console.error('Error: ', error)
+        })
+    }
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Highlight a plant to find the recipe:
+```JavaScript
+recipeClick = (plant) => {
+        let isSelected = this.state.selectedPlants.includes(plant)
+        !isSelected ? this.addSelectedPlant(plant) : this.removeSelectedPlant(plant)
+    }
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+addSelectedPlant = (plant) => {
+    this.setState({
+        selectedPlants: [...this.state.selectedPlants, plant]
+    })
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+removeSelectedPlant = (plant) => {
+    let filteredPlants = this.state.selectedPlants.filter(filteredPlant=> {
+        return filteredPlant !== plant
+    })
+    this.setState({
+        selectedPlants: filteredPlants
+    })
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Features
 
-## Learn More
+* Take a picture of anything
+* Use AI to guess what the plant is
+* Save plant guesses
+* Find recipes with plants you have found
+* Full auth with login and logout capabilitites
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## To-do List
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Refactor “code smell”
+* Save recipes
+* Allow picture upload so you don't have to take a picture
+* Integrate map functionality
 
-### Code Splitting
+## Status
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Project is: finished with option to expand functionality and DRY out code.
 
-### Analyzing the Bundle Size
+## Inspiration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+I have an extensive background in cooking. I also love the outdoors! This was a great way to combine my two loves, and to show off some skills.
 
-### Making a Progressive Web App
+## Contact
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Created by [Bob Whitmer](https://www.linkedin.com/in/bob-whitmer-b7269248/)
+Feel free to contact me!
