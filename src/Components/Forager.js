@@ -254,7 +254,7 @@ export default class Forager extends React.Component {
                         {(this.state.userPlants.length > 0)
                         ? 
                             <div className='user-plants'>
-                                <h1 className='site-banner'>Here are your plants!</h1>
+                                <h1 className='banner'>Your plants!</h1>
                                 <div className='user-plants-container'>
                                     {this.showUserPlants()}
                                 </div>
@@ -265,7 +265,7 @@ export default class Forager extends React.Component {
 
                         {(this.state.userRecipes.results)
                         ?   <div className='user-recipes'>
-                                <h1 className='site-banner'>Look at these recipes!</h1>
+                                <h1 className='banner'>Yummy recipes!</h1>
                                 <div className='user-recipes-container'>
                                     {this.handleShowRecipes()}
                                 </div>

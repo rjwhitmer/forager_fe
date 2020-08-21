@@ -28,7 +28,7 @@ export default class Login extends React.Component{
                     name='password'
                     onChange={this.handleChange}
                 />
-                <button type='submit' onClick={e => this.props.handleLogin(e, this.state)}>Log-In!</button>
+                <button className='myButton' type='submit' onClick={e => this.props.handleLogin(e, this.state)}>Log-In!</button>
                 <button type='submit' onClick={e => this.props.handleSignup(e, this.state)}>Sign-up!</button>
             </form>
         )

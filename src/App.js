@@ -4,6 +4,8 @@ import Forager from './Components/Forager'
 
 function App() {
   return (
+    <>
+    <div className='title-banner'></div>
       <div className="App">
         <div className='banner'>
           <h1>Forager</h1>
@@ -11,6 +13,7 @@ function App() {
         </div>
         <Forager />
       </div>
+    </>
   );
 }
 

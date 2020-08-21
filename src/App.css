@@ -4,11 +4,11 @@ body {
   background-color: hsl(77, 100%, 91%);
 }
 
-button {
+/* button {
   width: 80px;
   padding: 5px;
   margin: 5px;
-}
+} */
 
 nav {
   width: 100%;
@@ -21,11 +21,12 @@ nav {
   width: 100%;
 }
 
-#root {
+.title-banner {
   background-image: url(./site-images/dave-robinson-B2KgTWnNBd4-unsplash.jpg);
   background-size: 100%;
   height: 120px;
-  width: 300%;
+  width: 1250px;
+  opacity: .75;
 }
 
 .header > img {
@@ -50,16 +51,16 @@ nav {
   justify-content: center;
   align-items: center;
   padding-bottom: 20px;
-  margin-top: 5%;
   border-radius: 6px;
   font-family: 'Mukta', sans-serif;
+  margin-top: -50px;
 }
 
 .login {
   width: 190px;
   border-radius: 6px;
   background-color: hsla(154, 48%, 61%, 0.88);
-  box-shadow: 5px 6px 7px 1px #000000;
+  box-shadow: 2px 2px 5px 0px hsla(154, 48%, 37%, 0.842);
   padding: 20px;
 }
 
@@ -84,7 +85,12 @@ nav {
   width: 10rem;
   height: 100%;
   margin: 10px;
-  box-shadow: 5px 6px 7px 1px #000000;
+  box-shadow: 2px 2px 5px 0px hsla(154, 48%, 37%, 0.842);
+  padding: 20px;
+}
+
+.plant-card > h4, p {
+  margin: 3px;
 }
 
 .user-plant-card {
@@ -94,7 +100,8 @@ nav {
   height: 100%;
   text-overflow: clip;
   margin: 5px;
-  box-shadow: 5px 6px 7px 1px #000000;
+  box-shadow: 2px 2px 5px 0px hsla(154, 48%, 37%, 0.842);
+  padding: 5px;
 }
 
 .clicked-user-plant-card {
@@ -104,12 +111,13 @@ nav {
   height: 100%;
   text-overflow: clip;
   margin: 5px;
-  box-shadow: 5px 6px 7px 1px #000000;
+  box-shadow: 2px 2px 5px 0px hsla(154, 48%, 37%, 0.842);
+  padding: 5px;
 }
 
 .user-plant-card > img {
   width: 80%;
-  box-shadow: 5px 6px 7px 1px #000000;
+  box-shadow: 5px 6px 7px 1px #00000054;
 }
 
 .clicked-user-plant-card > img {
@@ -146,6 +154,7 @@ nav {
   flex-direction: row;
   justify-content: center;
   max-width: 80%;
+  margin-bottom: 10px;
 }
 
 .user-recipes {
@@ -178,7 +187,8 @@ nav {
   height: 100%;
   text-overflow: clip;
   margin: 10px;
-  box-shadow: 5px 6px 7px 1px #000000;
+  box-shadow: 2px 2px 5px 0px hsla(154, 48%, 37%, 0.842);
+  padding: 10px;
 }
 
 .user-recipe-card > img {
@@ -192,7 +202,7 @@ nav {
 .site-banner {
   background-color: hsla(154, 48%, 61%, 0.88);
   border-radius: 6px;
-  box-shadow: 5px 6px 7px 1px #000000;
+  box-shadow: 2px 2px 5px 0px hsla(154, 48%, 37%, 0.842);
   width: 90%;
 }
 
@@ -202,7 +212,7 @@ nav {
   align-items: center;
   background-color: hsla(154, 48%, 61%, 0.88);
   border-radius: 6px;
-  box-shadow: 5px 6px 7px 1px #000000;
+  box-shadow: 2px 2px 5px 0px hsla(154, 48%, 37%, 0.842);
   padding: 15px;
   width: 225px;
   margin-top: 10px;
@@ -219,7 +229,7 @@ nav {
 
 .small {
   width: 90%;
-  box-shadow: 5px 6px 7px 1px #000000;
+  box-shadow: 5px 6px 7px 1px #00000056;
 }
 
 .full-image {
@@ -232,4 +242,31 @@ nav {
   position: static;
   left: 20%;
   top: 10%;
+}
+
+button {
+	box-shadow:inset 0px 1px 0px 0px #3dc21b;
+	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+	background-color:#44c767;
+	border-radius:6px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+  text-shadow:0px 1px 0px #2f6627;
+  text-align: center;
+  margin: 5px;
+}
+button:hover {
+	background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+	background-color:#5cbf2a;
+}
+button:active {
+	position:relative;
+	top:1px;
 }
